@@ -1,0 +1,52 @@
+<% @projects.each do |project| %>
+
+  <%= div_for project do %>
+    <h2><span><%= project.name %></span></h2>
+    <%= content_tag_for(:a, project, :list, "href" => "#") do %>Edit list<% end %>
+    <div class="popup">
+    <a href="#" class="close-list">X</a>
+    <%= form_for project do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+    <%= f.submit "Update list" %>
+    <% end %>
+    </div>
+    <%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?'}, class: "delete-list" %>
+     <% project.tasks.each do |task| %>
+        <%= div_for task do %>
+          <%= check_box("task","completed",{:id => "complete#{task.id}"}) %>
+          <span><p><%= task.name %></p></span>
+          <%= content_tag_for(:a, task, :item, "href" => "#") do %>Edit task<% end %>
+            <div class="popup">
+            <a href="#" class="close-task">X</a>
+            <%= form_for [task.project, task], url: project_task_path(task.project, task) do |f| %>
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+            <%= f.submit "Update task" %>
+            <% end %>
+            </div>
+            <%= link_to 'Destroy Task', [task.project, task], method: :delete, data: { confirm: 'Are you sure?'}, class: 'delete-task' %>
+
+       <% end %><!--end div task loop-->
+    <% end %><!--end task loop-->
+    
+  <%= form_for ([project, project.tasks.build]) do |f| %>
+          <%= image_tag("green_plus.png") %>
+          <%= f.text_field :name, :placeholder => "Start typing here to create a task...", :id => "new-task-name" %>
+          <%= f.submit "Add task"%>
+      <% end %><!-- end new task form -->
+  <% end %><!-- end div project loop -->
+  <% end %><!-- end project loop -->
+
+
+
+
+<a href="#" class="new-list"><span>Add TODO list</span></a>
+<div class="popup" id="new_project">
+<a href="#" class="close">X</a>
+<%= form_tag("/projects/add", :method=>"post") do %>
+<%= label_tag("Name") %>
+<%= text_field_tag(:name) %>
+<%= submit_tag("Add TODO list", :class=>"close") %>
+<% end %><!-- end task new-->
+</div>
