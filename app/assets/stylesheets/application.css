@@ -83,6 +83,7 @@ font-size: 18px;
 font-size:14px;
 color: #fff;
 margin-top: 45px;
+margin-bottom: 45px;
 }
 .new-list {
 -moz-box-shadow:inset 0 1px 0 0 #fff;
@@ -254,6 +255,14 @@ font-weight:bold;
 }
 .task:hover {
 background: #fcfed5;
+}
+.task:last-of-type {
+-moz-border-radius-bottomright: 12px;
+-webkit-border-bottom-right-radius: 12px;
+border-bottom-right-radius: 12px;
+-moz-border-radius-bottomleft: 12px;
+-webkit-border-bottom-left-radius: 12px;
+border-bottom-left-radius: 12px;
 }
 .task p{
   display: inline-block;
