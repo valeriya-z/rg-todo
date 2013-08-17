@@ -60,7 +60,7 @@ table {
 }
 html body {
 font-family:"Myriad Pro";
-background: #ccc url(<%= asset_path('bg.png') %>) left top repeat;
+background: #ccc url('assets/bg.png') left top repeat;
 background-size: 100%;
 text-align: center;
 line-height:120%;
@@ -114,7 +114,7 @@ text-decoration:none;
     top:1px;
 }
 .new-list span {
-    background: url(<%= asset_path('blue_plus.png')%> no-repeat 2px 30px scroll;
+    background: url('assets/blue_plus.png') no-repeat 2px 30px scroll;
     padding: 32px;
 }
 .project {
@@ -161,12 +161,12 @@ padding: 15px;
 margin-bottom: 49px
 }
 h2 span {
-    background: url(<%= asset_path('list_icon.png')%>) no-repeat top left scroll;
+    background: url('assets/list_icon.png') no-repeat top left scroll;
     padding-left: 45px;
     padding-top: 5px;
 }
 a.list_project {
-    background: url(<%= asset_path('list_edit_icon.png')%> center left no-repeat;
+    background: url('assets/list_edit_icon.png') center left no-repeat;
     text-indent: -9999px;
     float: right;
     margin-top: -84px;
@@ -175,7 +175,7 @@ a.list_project {
     width: 30px;
 }
 a.delete-list {
-    background: url(<%= asset_path('delete_list_icon.png')%> center left no-repeat;
+    background: url('assets/delete_list_icon.png') center left no-repeat;
     text-indent: -9999px;
     float: right;
     margin-top: -84px;
@@ -278,7 +278,7 @@ font-weight:bold;
  margin-top: 15px;
  }
  .item_task {
-   background: url(<%= asset_path('task_icon.png') %>) center left no-repeat;
+   background: url('assets/task_icon.png') center left no-repeat;
    text-indent: -9999px;
    float: right;
    margin-right: 50px;
@@ -287,7 +287,7 @@ font-weight:bold;
    margin-top: 15px;
  }
  .delete-task {
-  background: url(<%= asset_path('delete_task_icon.png')%>) center left no-repeat;
+  background: url('assets/delete_task_icon.png') center left no-repeat;
   text-indent: -9999px;
   float: right;
   width: 20px;
