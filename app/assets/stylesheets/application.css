@@ -60,7 +60,7 @@ table {
 }
 html body {
 font-family:"Myriad Pro";
-background: #ccc url('assets/bg.png') left top repeat;
+background: #ccc url('bg.png') left top repeat;
 background-size: 100%;
 text-align: center;
 line-height:120%;
@@ -114,7 +114,7 @@ text-decoration:none;
     top:1px;
 }
 .new-list span {
-    background: url('assets/blue_plus.png') no-repeat 2px 30px scroll;
+    background: url('blue_plus.png') no-repeat 2px 30px scroll;
     padding: 32px;
 }
 .project {
@@ -161,12 +161,12 @@ padding: 15px;
 margin-bottom: 49px
 }
 h2 span {
-    background: url('assets/list_icon.png') no-repeat top left scroll;
+    background: url('list_icon.png') no-repeat top left scroll;
     padding-left: 45px;
     padding-top: 5px;
 }
 a.list_project {
-    background: url('assets/list_edit_icon.png') center left no-repeat;
+    background: url('list_edit_icon.png') center left no-repeat;
     text-indent: -9999px;
     float: right;
     margin-top: -84px;
@@ -175,7 +175,7 @@ a.list_project {
     width: 30px;
 }
 a.delete-list {
-    background: url('assets/delete_list_icon.png') center left no-repeat;
+    background: url('delete_list_icon.png') center left no-repeat;
     text-indent: -9999px;
     float: right;
     margin-top: -84px;
@@ -252,6 +252,9 @@ font-size:13px;
 line-height:120%;
 font-weight:bold;
 }
+.task:hover {
+background: #fcfed5;
+}
 .task p{
   display: inline-block;
   border-left: 1px solid #efdadf;
@@ -278,7 +281,7 @@ font-weight:bold;
  margin-top: 15px;
  }
  .item_task {
-   background: url('assets/task_icon.png') center left no-repeat;
+   background: url('task_icon.png') center left no-repeat;
    text-indent: -9999px;
    float: right;
    margin-right: 50px;
@@ -287,7 +290,7 @@ font-weight:bold;
    margin-top: 15px;
  }
  .delete-task {
-  background: url('assets/delete_task_icon.png') center left no-repeat;
+  background: url('delete_task_icon.png') center left no-repeat;
   text-indent: -9999px;
   float: right;
   width: 20px;
