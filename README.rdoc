@@ -1,72 +1,70 @@
-SQL task
-========
+=SQL task
 
-1. Get all statuses, not repeating, alphabetically ordered
+===1. Get all statuses, not repeating, alphabetically ordered
 
-SELECT DISTINCT t.status FROM tasks AS t ORDER BY t.status
+   SELECT DISTINCT t.status FROM tasks AS t ORDER BY t.status
 
-2. Get the count of all tasks in each project, order by tasks count descending
+===2. Get the count of all tasks in each project, order by tasks count descending
 
-SELECT p.name AS Name, COUNT( t.id ) AS Tasks_count
-FROM projects AS p
-LEFT JOIN tasks AS t ON p.id = t.project_id
-GROUP BY p.id
-ORDER BY Tasks_count DESC
+  SELECT p.name AS Name, COUNT( t.id ) AS Tasks_count
+  FROM projects AS p
+  LEFT JOIN tasks AS t ON p.id = t.project_id
+  GROUP BY p.id
+ ORDER BY Tasks_count DESC
 
-3. Get the count of all tasks in each project, order by projects names
+===3. Get the count of all tasks in each project, order by projects names
 
-SELECT p.name AS Name, COUNT( t.id ) AS Tasks_count
-FROM projects AS p
-LEFT JOIN tasks AS t ON p.id = t.project_id
-GROUP BY p.id
-ORDER BY Name 
+  SELECT p.name AS Name, COUNT( t.id ) AS Tasks_count
+  FROM projects AS p
+  LEFT JOIN tasks AS t ON p.id = t.project_id
+  GROUP BY p.id
+  ORDER BY Name 
 
-4. Get the tasks for all projects having the name beginning with 'N' letter
+===4. Get the tasks for all projects having the name beginning with 'N' letter
 
-SELECT p.name AS Name, t.name AS Tasks
-FROM projects AS p
-LEFT JOIN tasks AS t ON p.id = t.project_id
-WHERE p.name like 'N%'
-ORDER BY Name 
+  SELECT p.name AS Name, t.name AS Tasks
+  FROM projects AS p
+  LEFT JOIN tasks AS t ON p.id = t.project_id
+  WHERE p.name like 'N%'
+  ORDER BY Name 
 
-5. Get the list of all projects containing the ‘a’ letter in the middle of the name, and show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
+===5. Get the list of all projects containing the ‘a’ letter in the middle of the name, and show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
 
-LEFT JOIN tasks AS t ON p.id = t.project_id
-GROUP BY p.name
-HAVING SUBSTR(p.name, LENGTH(p.name)/2+1, 1) =  'a'
-ORDER BY Name
+   LEFT JOIN tasks AS t ON p.id = t.project_id
+   GROUP BY p.name
+   HAVING SUBSTR(p.name, LENGTH(p.name)/2+1, 1) =  'a'
+   ORDER BY Name
 
 
-6. Get the list of tasks with duplicate names. Order alphabetically
+===6. Get the list of tasks with duplicate names. Order alphabetically
 
-SELECT DISTINCT t1.name, t1.status, t1.project_id 
-FROM tasks as t1, tasks as t2 
-WHERE t1.name=t2.name AND t1.id <> t2.id
-ORDER BY name
+  SELECT DISTINCT t1.name, t1.status, t1.project_id 
+  FROM tasks as t1, tasks as t2 
+  WHERE t1.name=t2.name AND t1.id <> t2.id
+  ORDER BY name
 
-7. Get the list of tasks having several exact matches of both name and status, from the project ‘Garage’. Order by matches count
+===7. Get the list of tasks having several exact matches of both name and status, from the project ‘Garage’. Order by matches count
 
-SELECT 
+   SELECT 
     p.id as project_id,
     p.name as project_name,
     t1.name as name, 
     t1.status as status, 
     COUNT(DISTINCT t1.id) as match_count
-FROM 
+   FROM 
     tasks as t1 LEFT JOIN projects AS p ON t1.project_id = p.id,  
     tasks as t2 
-WHERE t1.name=t2.name 
+  WHERE t1.name=t2.name 
     AND t1.status=t2.status 
     AND t1.id <> t2.id 
     AND t1.project_id=t2.project_id
     AND p.name='Garage'
-GROUP BY t1.project_id, t1.name
-ORDER BY match_count
+  GROUP BY t1.project_id, t1.name
+  ORDER BY match_count
 
-8. Get the list of project names having more than 10 tasks in status ‘completed’. Order by project_id
+===8. Get the list of project names having more than 10 tasks in status ‘completed’. Order by project_id
 
-SELECT *
-FROM (
+   SELECT * FROM (
      SELECT 
           p.id as id, 
           p.name AS name, 
@@ -74,6 +72,4 @@ FROM (
      FROM projects AS p
      LEFT JOIN tasks AS t ON p.id = t.project_id
      GROUP BY name
-) AS v
-WHERE v.completed > 10
-ORDER BY v.id
+   ) AS v WHERE v.completed > 10 ORDER BY v.id
