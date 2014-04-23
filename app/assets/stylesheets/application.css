@@ -60,8 +60,7 @@ table {
 }
 html body {
 font-family:"Myriad Pro";
-background: #ccc url('bg.png') left top repeat;
-background-size: 100%;
+background: #ccc;
 text-align: center;
 line-height:120%;
 }
