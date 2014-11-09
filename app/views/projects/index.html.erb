@@ -13,8 +13,9 @@
     </div>
     <%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?'}, class: "delete-list" %>
      <% project.tasks.each do |task| %>
-        <%= div_for task do %>
-          <%= check_box("task","completed",{:id => "complete#{task.id}"}) %>
+      <%= div_for task, class: (task.completed ? "done" : "open")  do %>
+          <%= check_box_tag 'completed', task.id , task.completed, :class => "task-check" %>
+          <!--<%= check_box("task","completed",{:id => "task_#{task.id}"}) %>-->
           <span><p><%= task.name %></p></span>
           <%= content_tag_for(:a, task, :item, "href" => "#") do %>Edit task<% end %>
             <div class="popup">

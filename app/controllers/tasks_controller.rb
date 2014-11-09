@@ -27,4 +27,19 @@ class TasksController < ApplicationController
  
    redirect_to projects_path
   end
+  
+  def toggle
+    @task = Task.find(params[:id])
+    respond_to do |format|
+      format.js do
+        if (@task.completed != true)
+          @task.completed = true
+        else
+          @task.completed = false
+        end
+        @task.save
+        render :nothing => true
+      end
+  end
+end
 end

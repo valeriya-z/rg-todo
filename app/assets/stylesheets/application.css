@@ -223,7 +223,7 @@ a.delete-list {
 }
 .task {
   height: 45px;
-  color: #bbb;
+  color: #333;
   border-top: 1px solid #e7ebea;
   font-size:13px;
   line-height:120%;
@@ -241,10 +241,11 @@ a.delete-list {
   border-bottom-left-radius: 12px;
 }
 .done {
-  background: #eee;
+  background: #dedede;
 }
 .done p {
   text-decoration: line-through;
+  color: #777;
 }
 .task p{
   display: inline-block;

@@ -54,24 +54,19 @@ $('a.item_task').each(function(){
   return false;
   });
  });
+  $(".task-check").bind('change', function(){
+  if (this.checked){
+    project_id = $(this).closest('.project').attr('id');
+    project_id = project_id.substr(project_id.indexOf("_")+1);
+    $.ajax({
+      url: 'projects/'+project_id+'/tasks/'+this.value+'/toggle',
+      type: 'POST',
+      data: {"completed": this.checked}
+    });
+    $(this).closest('.task').removeClass('open').addClass('done');
+  }
+  else {
+    $(this).closest('.task').removeClass('done').addClass('open');
+  }
+  });
 });
-
- 
-/*
-$(".new-list").on("click", function() {
-       popup = $(this).attr('title');
-       showPopup(popup);
-     });
-
-	function showPopup(popup) {
-	$(popup).fadeIn(500);
-	var popMargTop = ($(popup).height() + 24) / 2; 
-  var popMargLeft = ($(popup).width() + 24) / 2; 
-    $(popup).css({ 
-        'margin-top' : -popMargTop,
-        'margin-left' : -popMargLeft
-      });
-    $('body').append('<div id="mask"></div>');
-    $('#mask').fadeIn(300);
-	return false;
-    }; */
