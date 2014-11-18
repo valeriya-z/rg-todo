@@ -8,6 +8,12 @@
 </head>
 <body>
 <h1>Simple todo lists<span><br/>written on Rails 3 and jQuery</span></h1>
+ <% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
 <%= yield %>
 <div class="footer">
 <p>&copy Valerie</p>
