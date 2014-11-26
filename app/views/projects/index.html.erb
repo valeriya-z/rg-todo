@@ -5,17 +5,12 @@
     <%= content_tag_for(:a, project, :list, "href" => "#") do %>Edit list<% end %>
     <div class="popup">
     <a href="#" class="close-list">X</a>
-    <%= form_for project do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-    <%= f.submit "Update list" %>
-    <% end %>
+      <%= render 'form', :project => project %>
     </div>
     <%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?'}, class: "delete-list" %>
      <% project.tasks.each do |task| %>
       <%= div_for task, class: (task.completed ? "done" : "open")  do %>
           <%= check_box_tag 'completed', task.id , task.completed, :class => "task-check" %>
-          <!--<%= check_box("task","completed",{:id => "task_#{task.id}"}) %>-->
           <span><p><%= task.name %></p></span>
           <%= content_tag_for(:a, task, :item, "href" => "#") do %>Edit task<% end %>
             <div class="popup">
@@ -49,5 +44,5 @@
   <%= label_tag("Name") %>
   <%= text_field_tag(:name) %>
   <%= submit_tag("Add TODO list", :class=>"close") %>
-  <% end %><!-- end task new-->
+  <% end %><!-- end project new-->
   </div>
