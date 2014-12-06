@@ -1,3 +1,147 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin linear-gradient($fromColor, $toColor) {
+  background-color: $fromColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+  background-image:      -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+  background-image:         linear-gradient(top, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+@mixin inset-box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $spread: 0px, $color: #CCC) {
+  -webkit-box-shadow: inset $horizontal $vertical $blur $spread $color;
+  -moz-box-shadow: inset $horizontal $vertical $blur $spread $color;
+  box-shadow: inset $horizontal $vertical $blur $spread $color;
+}
+@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
+  -webkit-box-shadow: $horizontal $vertical $blur $color;
+  -moz-box-shadow: $horizontal $vertical $blur $color;
+  box-shadow: $horizontal $vertical $blur $color;
+}
+#new_task {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  @include linear-gradient(#e1e1e1, #cccccc);
+  border: 1px soid #b3b3a3;
+}
+#new_task img {
+  vertical-align: middle;
+  margin: 0 15px 0 20px;  
+}
+#new-task-name {
+  width:533px;
+  height:30px;
+  @include inset-box-shadow(0,1px,2px,0,rgba(0,0,0,0.75));
+  margin: 5px 0 0 0;
+  color: #bbb;
+  font-size:14px;
+  padding: 0 0 0 5px;
+}
+#new_task input[type="submit"] {
+  font: bold 14px Arial,sans-serif;
+  color: #fff;
+  text-align:center;
+  padding: 6px 28px;
+  position: absolute;
+  top: 5px;
+  left: 555px;
+  text-shadow:0px 1px 0 rgba(0,0,0,0.75);
+  -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX = 0,OffY = 1,Color = #bf000000,Positive = true)";zoom:1;
+  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX = 0,OffY = 1,Color = #bf000000,Positive = true);
+  @include linear-gradient(rgb(150,205,176),rgb(77,132,100));
+  border: 1px solid rgb(68,117,87);
+  -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff96cdb0,endColorstr=#ff4d8464)";
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff96cdb0,endColorstr=#ff4d8464);
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.task {
+  height: 45px;
+  color: #333;
+  border-top: 1px solid #e7ebea;
+  font-size:13px;
+  line-height:120%;
+  font-weight:bold;
+  position: relative;
+}
+.task:hover {
+  background: #fcfed5;
+}
+.task:last-of-type {
+ border-bottom-right-radius: 12px;
+ border-bottom-left-radius: 12px;
+}
+.done {
+  background: #dedede;
+}
+.done p {
+  text-decoration: line-through;
+  color: #777;
+}
+.task p{
+  display: inline-block;
+  border-left: 1px solid #efdadf;
+  border-right: 1px solid #efdadf;
+  height: 30px;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  padding: 15px 0  0 10px;
+  width: 540px;
+}
+.task span {
+   border-left: 1px solid #efdadf;  
+   height: 44px;
+   display: inline-block;
+   padding: 0 0 0 10px;  
+} 
+.task input[type="checkbox"] {
+   margin: 15px 10px 0 20px;
+   vertical-align: top;
+ }
+ .edit_task {
+   background: url('task_icon.png') center left no-repeat;
+   text-indent: -9999px;
+   float: right;
+   border-right: 1px solid #ccc;
+   width: 25px;
+   margin: 15px 50px 0 0;
+ }
+ .delete-task {
+    background: url('delete_task_icon.png') center left no-repeat;
+    text-indent: -9999px;
+    float: right;
+    width: 20px;
+    margin: 15px -50px 0 0;
+ }
+.link-to-upload {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 103px;
+  color: #888;
+}
+.file-upload {
+  width: 250px;
+}
+.file-upload input[type="submit"] {
+  margin: 10px 0 0 0;
+}
+.file {
+   display: inline-block;
+   position: absolute;
+   top: 0px;
+   max-width: 70px;
+   right: 150px;
+   max-height: 45px;
+   overflow: hidden;
+    color: #888;
+  text-decoration: none;
+}

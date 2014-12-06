@@ -1,10 +1,10 @@
 <% @projects.each do |project| %>
 
   <%= div_for project do %>
-    <h2><span><%= project.name %></span></h2>
-    <%= content_tag_for(:a, project, :list, "href" => "#") do %>Edit list<% end %>
+  <h2><span><%= project.name %></span></h2>
+<%= content_tag_for(:a, project, :edit, "href" => "#") do %>Edit list<% end %>
     <div class="popup">
-    <a href="#" class="close-list">X</a>
+    <a href="#" class="close">X</a>
       <%= render 'form', :project => project %>
     </div>
     <%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?'}, class: "delete-list" %>
@@ -12,18 +12,21 @@
       <%= div_for task, class: (task.completed ? "done" : "open")  do %>
           <%= check_box_tag 'completed', task.id , task.completed, :class => "task-check" %>
           <span><p><%= task.name %></p></span>
-          <%= content_tag_for(:a, task, :item, "href" => "#") do %>Edit task<% end %>
+      <% if task.document.exists? %>
+        <%= link_to task.document.url, :class => 'file' do %><i class="fa fa-file-pdf-o"></i><%= task.document_file_name %><% end %>
+          <% end %>
+          <%= content_tag_for(:a, task, :edit, "href" => "#") do %>Edit task<% end %>
             <div class="popup">
-            <a href="#" class="close-task">X</a>
-            <%= form_for [task.project, task], url: project_task_path(task.project, task) do |f| %>
-            <%= f.label :name %><br>
-            <%= f.text_field :name %>
-            <%= f.submit "Update task" %>
-            <% end %>
+            <a href="#" class="close">X</a>
+              <%= render 'tasks/edit_task', :project => task.project, :task => task %>
             </div>
             <%= link_to 'Destroy Task', [task.project, task], method: :delete, data: { confirm: 'Are you sure?'}, class: 'delete-task' %>
-
-       <% end %><!--end div task loop-->
+<%= link_to "#", :id => "upload-for-#{task.id}", :class => "link-to-upload" do %><i class="fa fa-paperclip fa-lg"></i><% end %>
+    <div class="popup file-upload">
+    <a href="#" class="close">X</a>
+    <%= render 'tasks/upload_file', :project => task.project, :task => task %>
+     </div>
+       <% end %><!--end div task -->
     <% end %><!--end task loop-->
     
   <%= form_for ([project, project.tasks.build]) do |f| %>
@@ -31,7 +34,7 @@
           <%= f.text_field :name, :placeholder => "Start typing here to create a task...", :id => "new-task-name" %>
           <%= f.submit "Add task"%>
       <% end %><!-- end new task form -->
-  <% end %><!-- end div project loop -->
+  <% end %><!-- end div project-->
   <% end %><!-- end project loop -->
 
 
@@ -40,9 +43,9 @@
 <a href="#" class="new-list"><span>Add TODO list</span></a>
   <div class="popup" id="new_project">
   <a href="#" class="close">X</a>
-  <%= form_tag("/projects/add", :method=>"post") do %>
+  <%= form_tag("/projects/create", :method=>"post") do %>
   <%= label_tag("Name") %>
   <%= text_field_tag(:name) %>
-  <%= submit_tag("Add TODO list", :class=>"close") %>
+    <%= submit_tag("Add TODO list") %>
   <% end %><!-- end project new-->
   </div>

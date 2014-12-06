@@ -6,8 +6,8 @@ Tasker::Application.routes.draw do
   end
 
   match "projects/update" => "projects#update", :via => :post
-  match "projects/add" => "projects#add", :via => :post
-  match "/projects/:project_id/tasks/:id/edit" => "tasks#edit", :via => :post
+  match "projects/create" => "projects#create", :via => :post
+  match "/projects/:project_id/tasks/:id/edit" => "tasks#update", :via => :post
   match "/projects/:project_id/tasks/:id/toggle" => "tasks#toggle", :via => :post
 
   root :to => 'projects#index'

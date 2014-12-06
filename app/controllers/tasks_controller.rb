@@ -1,12 +1,14 @@
 class TasksController < ApplicationController
-	
-  def index
-   @tasks = Task.all
+  before_filter :authenticate_user!, :except => [:index, :show]
+#  load_and_authorize_resource :project
+#  load_and_authorize_resource :task, :through => :project
+	def index
    @tasks = @project.tasks.all
   end
   def create
     @project = Project.find(params[:project_id])
-    @task = @project.tasks.create(params[:task].permit(:name, :completed))
+    authorize! :create, @project, @task
+    @task = @project.tasks.create(params[:task].permit(:name, :completed, :document))
     redirect_to projects_path
   end
   def destroy
@@ -23,8 +25,8 @@ class TasksController < ApplicationController
  def update
    @project = Project.find(params[:project_id])
    @task = @project.tasks.find(params[:id])
-   @task.update(params[:task].permit(:name, :completed))
- 
+   @task.update(params[:task].permit(:name, :completed, :document))
+   @task.document = params[:task][:document]
    redirect_to projects_path
   end
   

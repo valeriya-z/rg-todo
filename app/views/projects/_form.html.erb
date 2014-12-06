@@ -1,4 +1,4 @@
-<%= form_for project do |f| %>
+<%= form_for project, :html => { :id => "form_edit_project_#{project.id}", :class => "form_edit_project" } do |f| %>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
     <%= f.submit "Update list" %>

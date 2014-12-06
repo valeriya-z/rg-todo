@@ -1,0 +1,4 @@
+<%= form_for [task.project,task], :html => { :class => "upload-file", :id => "form-upload-for-#{task.id}" } do |upload|  %>
+<%= upload.file_field :document %>
+<%= upload.submit "Upload file" %>
+<% end %>
